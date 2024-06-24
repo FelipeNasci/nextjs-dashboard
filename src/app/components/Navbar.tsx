@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import Search from "@/app/components/Search";
 
@@ -7,7 +8,9 @@ export default function Navbar() {
       <h1 className="font-thin text-white">
         <Link href="/">Next JS Gallery</Link>
       </h1>
-      <Search />
+      <Suspense>
+        <Search />
+      </Suspense>
     </nav>
   );
 }

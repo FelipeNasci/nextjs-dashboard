@@ -1,7 +1,7 @@
 import { ImageResponse } from "@/domain/models/Images";
 import Image from "@/services/image";
 
-const DEFAULT_RESOURCE = "curated";
+const DEFAULT_RESOURCE = "/curated";
 
 const fallback = {
   total_results: 0,
@@ -12,8 +12,16 @@ const fallback = {
   prev_page: "",
 };
 
-async function getImages(filter?: string): Promise<ImageResponse> {
-  const resource = `/${filter || DEFAULT_RESOURCE}?per_page=15`;
+function buildQuery(data: Record<string, string>) {
+  return new URLSearchParams(data).toString();
+}
+
+async function getImages(filter: string = ""): Promise<ImageResponse> {
+  let resource = filter ? `/search` : DEFAULT_RESOURCE;
+
+  const params = { query: filter, per_page: "200" };
+
+  resource = resource.concat(`?${buildQuery(params)}`);
 
   try {
     const response = await Image.fetch<ImageResponse>(resource);

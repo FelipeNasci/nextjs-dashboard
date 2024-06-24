@@ -1,6 +1,12 @@
-import Image from "next/image";
-import Gallery from "@/app/components/Gallery";
+import Content from "@/app/content";
 
-export default function Home() {
-  return <Gallery />;
+interface Props {
+  searchParams: { search: string };
+}
+
+export default function App({ searchParams }: Props) {
+  const { search } = searchParams;
+
+  /* @ts-expect-error Server Component */
+  return <Content filter={search} />;
 }

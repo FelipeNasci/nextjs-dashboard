@@ -10,14 +10,14 @@ export default function Page() {
         <AcmeLogo />
       </div>
       <Image
-      className='hidden md:block'
+        className="hidden md:block"
         src="/hero-desktop.png"
         width={1000}
         height={500}
         alt="Hero Image"
       />
       <Image
-      className='block md:hidden'
+        className="block md:hidden"
         src="/hero-mobile.png"
         width={560}
         height={620}
